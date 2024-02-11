@@ -1,34 +1,28 @@
-//euler14
+// euler14
 /*
 Find the n of routes through a 20 x 20 grid
 */
 
 #include <iostream>
-#include "hfiles/Timer.h"
+typedef long long ll;
 
-long long binomialCoefficient(int n, int k)
-{
-    if (k > n - k) k = n - k;
-    long long result = 1;
-    for (int i = 0; i < k; ++i)
-    {
-        result *= (n - i);
-        result /= (i + 1);
-    }
-    return result;
+ll bc(int n, int k) {
+  if (k > n - k)
+    k = n - k;
+  ll result = 1;
+  for (int i = 0; i < k; ++i) {
+    result *= (n - i);
+    result /= (i + 1);
+  }
+  return result;
 }
 
-long long calculateRoutes(int gridSize)
-{
-    return binomialCoefficient(2 * gridSize, gridSize);
-}
+ll get_routes(int gridSize) { return bc(2 * gridSize, gridSize); }
 
-int main()
-{
-    Timer tr;
-    int gridSize = 20;
-    std::cout << "Number of routes through a " << gridSize << "x" << gridSize 
-              << " grid: " << calculateRoutes(gridSize) << std::endl;
+int main() {
+  int gridSize = 20;
+  std::cout << "Number of routes through a " << gridSize << "x" << gridSize
+            << " grid: " << get_routes(gridSize) << std::endl;
 }
 
 /*
@@ -44,7 +38,7 @@ unsigned long long factorial(unsigned int n)
     return result;
 }
 
-C(2n, n) = C(2n, 2n - n) 
+C(2n, n)
 -> C(n, k) = n! / (k! * (n - k)!)
 
 
